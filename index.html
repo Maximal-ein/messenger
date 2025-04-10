@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Чат</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+    <section class="chat">
+      <h1 class="visually-hidden">Чат</h1>
+
+      <div class="chat-content" tabindex="0">
+        <div class="chat-messages-container">
+          <!-- Сообщения будут здесь -->
+        </div>
+      </div>
+
+      <form class="chat-form" method="post">
+        <textarea class="chat-form-input" aria-label="Ваше сообщение" placeholder="Напишите что-нибудь" rows="1" required></textarea>
+        <button class="chat-form-button" type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <template id="message-template">
+      <div class="chat-message" tabindex="0">
+        <span class="chat-message-name">User</span>
+        <p class="chat-message-text"></p>
+        <button class="chat-message-button" type="button">Удалить</button>
+      </div>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
