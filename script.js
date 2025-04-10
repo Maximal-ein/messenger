@@ -81,13 +81,7 @@ function init() {
   chatForm.addEventListener('submit', handleFormSubmit);
   chatContent.addEventListener('click', handleMessageDelete);
   chatFormInput.addEventListener('keydown', handleInputKeydown);
-  chatFormInput.focus(); 
-  // Создаем контейнер для сообщений, если его нет
-  if (!document.querySelector('.chat-messages-container')) {
-    const container = document.createElement('div');
-    container.className = 'chat-messages-container';
-    chatContent.append(container);
-  }
+  chatFormInput.focus();
   
   scrollToBottom();
 }
