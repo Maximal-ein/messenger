@@ -56,12 +56,10 @@ function handleInputKeydown(evt) {
 
 function scrollToBottom() {
   const messagesContainer = document.querySelector('.chat-messages-container');
-  if (messagesContainer) {
-    messagesContainer.scrollIntoView({
-      block: 'end',
-      behavior: 'smooth'
-    });
-  }
+  messagesContainer?.scrollIntoView({
+    block: 'end',
+    behavior: 'smooth'
+  });
 }
 
 // Обработчик колесика мыши
@@ -88,7 +86,7 @@ function init() {
   if (!document.querySelector('.chat-messages-container')) {
     const container = document.createElement('div');
     container.className = 'chat-messages-container';
-    chatContent.appendChild(container);
+    chatContent.append(container);
   }
   
   scrollToBottom();
