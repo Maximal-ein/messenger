@@ -14,13 +14,13 @@ function createMessage(text) {
 
 // Функция отправки сообщения
 function sendMessage(text) {
-  if (!text) return; // Упрощение проверки на пустую строку
+  if (!text) return;
   
   const newMessage = createMessage(text);
   messagesContainer.append(newMessage);
   
   chatFormInput.value = '';
-  adjustInputHeight(); // Выносим в отдельную функцию для лучшей читаемости
+  adjustInputHeight();
   
   // Прокручиваем после добавления в DOM
   requestAnimationFrame(() => {
@@ -55,7 +55,7 @@ function handleInputKeydown(evt) {
 
 // Автоматическая прокрутка вниз
 function scrollToBottom() {
-  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Упрощение кода
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
 // Обработчик колесика мыши
@@ -77,8 +77,8 @@ function init() {
   chatForm.addEventListener('submit', handleFormSubmit);
   chatContent.addEventListener('click', handleMessageDelete);
   chatFormInput.addEventListener('keydown', handleInputKeydown);
-  chatFormInput.addEventListener('input', adjustInputHeight); // Перенесено в init
-  chatContent.addEventListener('wheel', handleWheel); // Перенесено в init
+  chatFormInput.addEventListener('input', adjustInputHeight);
+  chatContent.addEventListener('wheel', handleWheel);
   chatFormInput.focus();
   
   scrollToBottom();
