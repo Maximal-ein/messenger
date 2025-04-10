@@ -1,5 +1,6 @@
 const chatContent = document.querySelector('.chat-content');
 const chatFormInput = document.querySelector('.chat-form-input');
+const messagesContainer = document.querySelector('.chat-messages-container');
 
 // Функция создания нового сообщения
 function createMessage(text) {
@@ -15,7 +16,6 @@ function createMessage(text) {
 function sendMessage(text) {
   if (text === '') return;
   
-  const messagesContainer = document.querySelector('.chat-messages-container');
   const newMessage = createMessage(text);
   messagesContainer.append(newMessage);
   
@@ -55,7 +55,6 @@ function handleInputKeydown(evt) {
 }
 
 function scrollToBottom() {
-  const messagesContainer = document.querySelector('.chat-messages-container');
   messagesContainer?.scrollIntoView({
     block: 'end',
     behavior: 'smooth'
