@@ -14,13 +14,13 @@ function createMessage(text) {
 
 // Функция отправки сообщения
 function sendMessage(text) {
-  if (text === '') return;
+  if (!text) return; // Упрощение проверки на пустую строку
   
   const newMessage = createMessage(text);
   messagesContainer.append(newMessage);
   
   chatFormInput.value = '';
-  chatFormInput.style.height = 'auto';
+  adjustInputHeight(); // Выносим в отдельную функцию для лучшей читаемости
   
   // Прокручиваем после добавления в DOM
   requestAnimationFrame(() => {
@@ -48,38 +48,37 @@ function handleMessageDelete(evt) {
 // Обработчик нажатия клавиш в поле ввода
 function handleInputKeydown(evt) {
   if (evt.key === 'Enter' && !evt.shiftKey) {
-	
     evt.preventDefault();
     sendMessage(chatFormInput.value.trim());
   }
 }
 
+// Автоматическая прокрутка вниз
 function scrollToBottom() {
-  messagesContainer?.scrollIntoView({
-    block: 'end',
-    behavior: 'smooth'
-  });
+  messagesContainer.scrollTop = messagesContainer.scrollHeight; // Упрощение кода
 }
 
 // Обработчик колесика мыши
-chatContent.addEventListener('wheel', (evt) => {
+function handleWheel(evt) {
   if (evt.ctrlKey) return;
   evt.preventDefault();
   chatContent.scrollTop += evt.deltaY;
-}, { passive: false });
+}
 
-//Обработчик для динамического изменения высоты textarea
-chatFormInput.addEventListener('input', function() {
-  this.style.height = 'auto';
-  this.style.height = Math.min(this.scrollHeight, 150) + 'px';
-});
+// Обработчик для динамического изменения высоты textarea
+function adjustInputHeight() {
+  chatFormInput.style.height = 'auto';
+  chatFormInput.style.height = Math.min(chatFormInput.scrollHeight, 150) + 'px';
+}
 
-// Автоматическая прокрутка при инициализации
+// Инициализация
 function init() {
   const chatForm = document.querySelector('.chat-form');
   chatForm.addEventListener('submit', handleFormSubmit);
   chatContent.addEventListener('click', handleMessageDelete);
   chatFormInput.addEventListener('keydown', handleInputKeydown);
+  chatFormInput.addEventListener('input', adjustInputHeight); // Перенесено в init
+  chatContent.addEventListener('wheel', handleWheel); // Перенесено в init
   chatFormInput.focus();
   
   scrollToBottom();
